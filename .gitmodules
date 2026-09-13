@@ -1,0 +1,3 @@
+[submodule "pandapower-env"]
+	path = pandapower-env
+	url = https://github.com/Giulcoo/PPTopoGym4PowerBenchmark.git

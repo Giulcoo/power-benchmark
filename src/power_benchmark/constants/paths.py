@@ -1,0 +1,1 @@
+SCENARIO_FOLDER = "/assets/scenarios/"

@@ -1,0 +1,50 @@
+[project]
+name = "power-benchmark"
+version = "0.0.1"
+description = ""
+authors = [
+    {name = "Giulio Pazzi"}
+]
+readme = "README.md"
+requires-python = "^3.10"
+dependencies = []
+
+[tool.poetry]
+packages = [{include = "power_benchmark", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+simbench = "1.6.1"
+matplotlib = "^3.9.2"
+gymnasium = "^1.0.0"
+lxml = "6.0.2"
+streamlit = "1.53.1"
+plotly = "^6.1.1"
+anywidget = "0.9.21"
+kaleido = "1.2.0"
+pydantic = "2.12.5"
+tensorboard = "^2.15"
+optuna = "^4.2"
+pandapower-env = { path = "./pandapower-env", develop = true }
+
+[tool.poe.tasks.run_config]
+cmd = "python ./src/power_benchmark/main.py ${config_file}"
+help = "Run benchmark with a specific config"
+
+[[tool.poe.tasks.run_config.args]]
+name = "config_file"
+positional = true
+required = true
+help = "Path of the YAML config file (e.g. ./configs/greedy_config.yaml)"
+
+[tool.poe.tasks.rc]
+ref  = "run_config"
+help = "Alias for run_config"
+
+[dependency-groups]
+dev = [
+    "poethepoet (>=0.37.0,<0.38.0)"
+]
